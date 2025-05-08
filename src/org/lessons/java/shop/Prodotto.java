@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 public class Prodotto {
 
     // Context: Attributes
-    private int code;
-    private String name;
-    private String brand;
-    private BigDecimal price;
-    private BigDecimal iva;
+    protected int code;
+    protected String name;
+    protected String brand;
+    protected BigDecimal price;
+    protected BigDecimal iva;
 
     // Context: Methods
 
@@ -18,8 +18,8 @@ public class Prodotto {
         this.code = 0;
         this.name = "";
         this.brand = "";
-        this.price = new BigDecimal(0);
-        this.iva = new BigDecimal(0);
+        this.price = BigDecimal.ZERO;
+        this.iva = BigDecimal.ZERO;
     }
 
     public Prodotto(int code, String name, String brand, BigDecimal price, BigDecimal iva) {
@@ -75,7 +75,7 @@ public class Prodotto {
     // Context: Custom Methods
     @Override
     public String toString() {
-        return String.format("Info Product| Code: %d, Name: %s, Brand: %s, Price: %.2f, IVA: %.2f;", this.code,
+        return String.format("Info Product| Code: %d, Name: %s, Brand: %s, Price: %.2f, IVA: %.2f ", this.code,
                 this.name,
                 this.brand, this.price, this.iva);
     }
