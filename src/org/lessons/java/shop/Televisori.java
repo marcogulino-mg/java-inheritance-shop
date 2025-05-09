@@ -16,9 +16,9 @@ public class Televisori extends Prodotto {
         this.isSmart = false;
     }
 
-    public Televisori(int code, String name, String brand, BigDecimal price, BigDecimal iva, BigDecimal screenSize,
+    public Televisori(String name, String brand, BigDecimal price, BigDecimal iva, BigDecimal screenSize,
             boolean isSmart) {
-        super(code, name, brand, price, iva);
+        super(name, brand, price, iva);
         this.screenSize = screenSize;
         this.isSmart = isSmart;
     }

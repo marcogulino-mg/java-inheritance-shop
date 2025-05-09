@@ -1,6 +1,8 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Random;
 
 public class Prodotto {
 
@@ -22,8 +24,8 @@ public class Prodotto {
         this.iva = BigDecimal.ZERO;
     }
 
-    public Prodotto(int code, String name, String brand, BigDecimal price, BigDecimal iva) {
-        this.code = code;
+    public Prodotto(String name, String brand, BigDecimal price, BigDecimal iva) {
+        this.code = codeGenerator();
         this.name = name;
         this.brand = brand;
         this.price = price;
@@ -75,8 +77,19 @@ public class Prodotto {
     // Context: Custom Methods
     @Override
     public String toString() {
-        return String.format("Info Product| Code: %d, Name: %s, Brand: %s, Price: %.2f, IVA: %.2f", this.code,
+        return String.format("Info Product| Code: %d, Name: %s, Brand: %s, Price: %.2f", this.code,
                 this.name,
-                this.brand, this.price, this.iva);
+                this.brand, taxedPrice());
+    }
+
+    // Explanation: Random Code Generator (0 to 99999999)
+    private int codeGenerator() {
+        Random r = new Random();
+        return r.nextInt(100000000);
+    }
+
+    // Explanation: Random Code Generator (0 to 99999999)
+    private BigDecimal taxedPrice() {
+        return this.price.add(this.price.multiply(this.iva.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP)));
     }
 }

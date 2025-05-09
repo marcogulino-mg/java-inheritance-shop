@@ -17,9 +17,9 @@ public class Smartphone extends Prodotto {
         this.storageCapacity = BigDecimal.ZERO;
     }
 
-    public Smartphone(int code, String name, String brand, BigDecimal price, BigDecimal iva, String imei,
+    public Smartphone(String name, String brand, BigDecimal price, BigDecimal iva, String imei,
             BigDecimal storageCapacity) {
-        super(code, name, brand, price, iva);
+        super(name, brand, price, iva);
         this.imei = imei;
         this.storageCapacity = storageCapacity;
     }
