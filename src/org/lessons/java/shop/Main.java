@@ -20,6 +20,11 @@ public class Main {
         Televisori televisori01 = new Televisori(14, "Samsung OLED 4K 55 Pollici", "Samsung", new BigDecimal(1299.99),
                 new BigDecimal(22), new BigDecimal(55), true);
 
+        // Note: Cuffie
+        Cuffie emptyCuffie = new Cuffie();
+        Cuffie cuffie01 = new Cuffie(16, "Sony WH-CH520 Wireless Headphone", "Sony", new BigDecimal(39.00),
+                new BigDecimal(22), "Black", true);
+
         // Context: Methods
         // Note: Print Products Info
         System.out.println(empty.toString());
@@ -32,5 +37,9 @@ public class Main {
         // Note: Print Televisori Info
         System.out.println(emptyTelevisori.toString());
         System.out.println(televisori01.toString());
+
+        // Note: Print Cuffie Info
+        System.out.println(emptyCuffie.toString());
+        System.out.println(cuffie01.toString());
     }
 }

@@ -3,6 +3,7 @@ package org.lessons.java.shop;
 import java.math.BigDecimal;
 
 public class Televisori extends Prodotto {
+
     // Context: Attributes
     private BigDecimal screenSize;
     private boolean isSmart;
@@ -43,7 +44,7 @@ public class Televisori extends Prodotto {
     // Context: Custom Methods
     @Override
     public String toString() {
-        return super.toString() + String.format(", Screen Size: %.2f, Smart TV: %b", screenSize, isSmart);
+        return super.toString() + String.format(", Screen Size: %.2f, Smart TV: %b", this.screenSize, this.isSmart);
     }
 
 }
