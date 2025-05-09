@@ -26,11 +26,11 @@ public class Smartphone extends Prodotto {
 
     // Context: Getters
     public String getImei() {
-        return imei;
+        return this.imei;
     }
 
     public BigDecimal getStorageCapacity() {
-        return storageCapacity;
+        return this.storageCapacity;
     }
 
     // Context: Setters
@@ -46,6 +46,6 @@ public class Smartphone extends Prodotto {
     @Override
     public String toString() {
         return super.toString()
-                + String.format("IMEI: %s, Storage Capacity: %.2fGB", this.imei, this.storageCapacity);
+                + String.format(", IMEI: %s, Storage Capacity: %.2fGB", this.imei, this.storageCapacity);
     }
 }

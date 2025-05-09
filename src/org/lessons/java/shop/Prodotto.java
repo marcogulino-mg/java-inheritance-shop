@@ -40,15 +40,15 @@ public class Prodotto {
     }
 
     public String getBrand() {
-        return brand;
+        return this.brand;
     }
 
     public BigDecimal getPrice() {
-        return price;
+        return this.price;
     }
 
     public BigDecimal getIva() {
-        return iva;
+        return this.iva;
     }
 
     // Context: Setters
@@ -75,7 +75,7 @@ public class Prodotto {
     // Context: Custom Methods
     @Override
     public String toString() {
-        return String.format("Info Product| Code: %d, Name: %s, Brand: %s, Price: %.2f, IVA: %.2f ", this.code,
+        return String.format("Info Product| Code: %d, Name: %s, Brand: %s, Price: %.2f, IVA: %.2f", this.code,
                 this.name,
                 this.brand, this.price, this.iva);
     }

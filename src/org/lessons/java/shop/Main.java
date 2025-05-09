@@ -15,6 +15,11 @@ public class Main {
         Smartphone smartphone01 = new Smartphone(12, "Samsung Galaxy S25", "Samsung", new BigDecimal(899.99),
                 new BigDecimal(22), "352099001761487", new BigDecimal(256));
 
+        // Note: Televisori
+        Televisori emptyTelevisori = new Televisori();
+        Televisori televisori01 = new Televisori(14, "Samsung OLED 4K 55 Pollici", "Samsung", new BigDecimal(1299.99),
+                new BigDecimal(22), new BigDecimal(55), true);
+
         // Context: Methods
         // Note: Print Products Info
         System.out.println(empty.toString());
@@ -23,5 +28,9 @@ public class Main {
         // Note: Print Smartphones Info
         System.out.println(emptySmartphone.toString());
         System.out.println(smartphone01.toString());
+
+        // Note: Print Televisori Info
+        System.out.println(emptyTelevisori.toString());
+        System.out.println(televisori01.toString());
     }
 }
