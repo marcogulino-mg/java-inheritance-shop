@@ -7,11 +7,11 @@ import java.util.Random;
 public class Prodotto {
 
     // Context: Attributes
-    protected int code;
-    protected String name;
-    protected String brand;
-    protected BigDecimal price;
-    protected BigDecimal iva;
+    private int code;
+    private String name;
+    private String brand;
+    private BigDecimal price;
+    private BigDecimal iva;
 
     // Context: Methods
 
