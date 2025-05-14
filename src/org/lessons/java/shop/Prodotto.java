@@ -7,11 +7,11 @@ import java.util.Random;
 public class Prodotto {
 
     // Context: Attributes
-    private int code;
-    private String name;
-    private String brand;
-    private BigDecimal price;
-    private BigDecimal iva;
+    protected int code;
+    protected String name;
+    protected String brand;
+    protected BigDecimal price;
+    protected BigDecimal iva;
 
     // Context: Methods
 
@@ -77,9 +77,9 @@ public class Prodotto {
     // Context: Custom Methods
     @Override
     public String toString() {
-        return String.format("Info Product| Code: %d, Name: %s, Brand: %s, Price: %.2f", this.code,
+        return String.format("Info Product| Code: %d, Name: %s, Brand: %s, Price: %.2f, IVA: %s", this.code,
                 this.name,
-                this.brand, taxedPrice());
+                this.brand, this.price, this.iva);
     }
 
     // Explanation: Random Code Generator (0 to 99999999)
@@ -88,8 +88,20 @@ public class Prodotto {
         return r.nextInt(100000000);
     }
 
-    // Explanation: Random Code Generator (0 to 99999999)
-    private BigDecimal taxedPrice() {
-        return this.price.add(this.price.multiply(this.iva.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP)));
+    // Explanation: Calc Final Price with IVA and Coupon Code (if true)
+    protected BigDecimal finalPrice(boolean isCoupon) {
+        // Explanation: Calculate VAT accurately: (price * vat) / 100
+        BigDecimal taxedPrice = this.price.add(this.price.multiply(this.iva.divide(BigDecimal.valueOf(100))));
+
+        // Explanation: Check storageCapacity and isCoupon
+        if (isCoupon) {
+            BigDecimal discountedPrice = taxedPrice.multiply(BigDecimal.valueOf(0.02));
+            discountedPrice = taxedPrice.subtract(discountedPrice);
+            return discountedPrice.setScale(2, RoundingMode.HALF_UP);
+        } else {
+            // Explanation: Round the final price to two decimal places
+            return taxedPrice.setScale(2, RoundingMode.HALF_UP);
+        }
     }
+
 }

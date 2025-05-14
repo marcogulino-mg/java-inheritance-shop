@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Cuffie extends Prodotto {
 
@@ -45,5 +46,25 @@ public class Cuffie extends Prodotto {
     @Override
     public String toString() {
         return super.toString() + String.format(", Color: %s, Wireless: %b", this.color, this.isWireless);
+    }
+
+    @Override
+    protected BigDecimal finalPrice(boolean isCoupon) {
+        // Explanation: Calculate VAT accurately: (price * vat) / 100
+        BigDecimal taxedPrice = this.price.add(this.price.multiply(this.iva.divide(BigDecimal.valueOf(100))));
+
+        // Explanation: Check isWireless and isCoupon
+        if (isCoupon && this.isWireless) {
+            BigDecimal discountedPrice = taxedPrice.multiply(BigDecimal.valueOf(0.02));
+            discountedPrice = taxedPrice.subtract(discountedPrice);
+            return discountedPrice.setScale(2, RoundingMode.HALF_UP);
+        } else if (isCoupon && !this.isWireless) {
+            BigDecimal discountedPrice = taxedPrice.multiply(BigDecimal.valueOf(0.07));
+            discountedPrice = taxedPrice.subtract(discountedPrice);
+            return discountedPrice.setScale(2, RoundingMode.HALF_UP);
+        } else {
+            // Explanation: Round the final price to two decimal places
+            return taxedPrice.setScale(2, RoundingMode.HALF_UP);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Smartphone extends Prodotto {
 
@@ -48,4 +49,25 @@ public class Smartphone extends Prodotto {
         return super.toString()
                 + String.format(", IMEI: %s, Storage Capacity: %.2fGB", this.imei, this.storageCapacity);
     }
+
+    @Override
+    protected BigDecimal finalPrice(boolean isCoupon) {
+        // Explanation: Calculate VAT accurately: (price * vat) / 100
+        BigDecimal taxedPrice = this.price.add(this.price.multiply(this.iva.divide(BigDecimal.valueOf(100))));
+
+        // Explanation: Check storageCapacity and isCoupon
+        if (isCoupon && this.storageCapacity.compareTo(BigDecimal.valueOf(32)) >= 0) {
+            BigDecimal discountedPrice = taxedPrice.multiply(BigDecimal.valueOf(0.02));
+            discountedPrice = taxedPrice.subtract(discountedPrice);
+            return discountedPrice.setScale(2, RoundingMode.HALF_UP);
+        } else if (isCoupon && this.storageCapacity.compareTo(BigDecimal.valueOf(32)) == -1) {
+            BigDecimal discountedPrice = taxedPrice.multiply(BigDecimal.valueOf(0.05));
+            discountedPrice = taxedPrice.subtract(discountedPrice);
+            return discountedPrice.setScale(2, RoundingMode.HALF_UP);
+        } else {
+            // Explanation: Round the final price to two decimal places
+            return taxedPrice.setScale(2, RoundingMode.HALF_UP);
+        }
+    }
+
 }
